@@ -25,7 +25,7 @@ Este é um chatbot para restaurantes criado com [Typebot](https://typebot.io/), 
 - **Controle de estoque**: O vendedor consegue acompanhar o estoque dos produtos em tempo real, podendo fazer ajustes ou atualizações quando necessário.
 -  ![Chatbot de Restaurante](004316.png)
 - **Disparo automático de status do pedido**: O sistema envia automaticamente as atualizações de status do pedido para o cliente (exemplo: "Pedido em preparação", "Pedido pronto para entrega", etc.).
-- [Chatbot de Restaurante](004751.png)
+- ![Chatbot de Restaurante](004751.png)
 
 
 
