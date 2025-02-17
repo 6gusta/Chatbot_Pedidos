@@ -23,6 +23,7 @@ Este é um chatbot para restaurantes criado com [Typebot](https://typebot.io/), 
 - **Gerencia margem de lucro em tempo real**: O vendedor pode monitorar as margens de lucro das vendas em tempo real, ajudando na gestão financeira.
 -  ![Chatbot de Restaurante]( 003815.png)
 - **Controle de estoque**: O vendedor consegue acompanhar o estoque dos produtos em tempo real, podendo fazer ajustes ou atualizações quando necessário.
+-  ![Chatbot de Restaurante](004316.png)
 - **Disparo automático de status do pedido**: O sistema envia automaticamente as atualizações de status do pedido para o cliente (exemplo: "Pedido em preparação", "Pedido pronto para entrega", etc.).
 
 
