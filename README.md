@@ -19,6 +19,7 @@ Este é um chatbot para restaurantes criado com [Typebot](https://typebot.io/), 
 
 ### **Vendedor**
 - **Gerencia pedidos**: O vendedor tem a capacidade de gerenciar os pedidos realizados pelos clientes, podendo verificar o status e as informações de cada pedido.
+- ![Chatbot de Restaurante](003429.png)
 - **Gerencia margem de lucro em tempo real**: O vendedor pode monitorar as margens de lucro das vendas em tempo real, ajudando na gestão financeira.
 - **Controle de estoque**: O vendedor consegue acompanhar o estoque dos produtos em tempo real, podendo fazer ajustes ou atualizações quando necessário.
 - **Disparo automático de status do pedido**: O sistema envia automaticamente as atualizações de status do pedido para o cliente (exemplo: "Pedido em preparação", "Pedido pronto para entrega", etc.).
