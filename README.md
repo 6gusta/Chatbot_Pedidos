@@ -16,6 +16,7 @@ Este é um chatbot para restaurantes criado com [Typebot](https://typebot.io/), 
 ### **Cliente**
 - **Faz pedidos via Chatbot**: O cliente pode interagir com o chatbot para fazer pedidos de forma rápida e prática.
 - ![Chatbot de Restaurante](133006.png)
+- - **Acompanhamento do Pedido em Tempo real**: O cliente pode acompanhar seu pedido e ver o estatus em tempo real.
 
 ### **Vendedor**
 - **Gerencia pedidos**: O vendedor tem a capacidade de gerenciar os pedidos realizados pelos clientes, podendo verificar o status e as informações de cada pedido.
