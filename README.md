@@ -17,6 +17,9 @@ Este é um chatbot para restaurantes criado com [Typebot](https://typebot.io/), 
 - **Cliente**: Faz pedidos via chatbot
 - ![Chatbot de Restaurante](133006.png)
 - **Vendedor**: Gerencia pedidos
+  *Gerencia margem de lucro em tempo real.
+  *controle de estoque.
+  *disparo automatico de status do pedido.
 - **Administrador**: Gerencia usuários e cardápio
 - **Segurança**: Autenticação com Spring Security
 
