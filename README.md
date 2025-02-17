@@ -13,15 +13,16 @@ Este é um chatbot para restaurantes criado com [Typebot](https://typebot.io/), 
 - **MySQL**: Banco de dados
 - **Ngrok**: Exposição da API local para o chatbot
 
-## Funcionalidades
-- **Cliente**: Faz pedidos via chatbot
+### **Cliente**
+- **Faz pedidos via Chatbot**: O cliente pode interagir com o chatbot para fazer pedidos de forma rápida e prática.
 - ![Chatbot de Restaurante](133006.png)
-- **Vendedor**: Gerencia pedidos
-  *Gerencia margem de lucro em tempo real.
-  *controle de estoque.
-  *disparo automatico de status do pedido.
-- **Administrador**: Gerencia usuários e cardápio
-- **Segurança**: Autenticação com Spring Security
+
+### **Vendedor**
+- **Gerencia pedidos**: O vendedor tem a capacidade de gerenciar os pedidos realizados pelos clientes, podendo verificar o status e as informações de cada pedido.
+- **Gerencia margem de lucro em tempo real**: O vendedor pode monitorar as margens de lucro das vendas em tempo real, ajudando na gestão financeira.
+- **Controle de estoque**: O vendedor consegue acompanhar o estoque dos produtos em tempo real, podendo fazer ajustes ou atualizações quando necessário.
+- **Disparo automático de status do pedido**: O sistema envia automaticamente as atualizações de status do pedido para o cliente (exemplo: "Pedido em preparação", "Pedido pronto para entrega", etc.).
+
 
 ## Como Executar
 ### Backend (API Java)
