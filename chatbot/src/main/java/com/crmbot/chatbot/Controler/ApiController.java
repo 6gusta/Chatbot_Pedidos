@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;  // Importando a interface correta para List
 import java.time.LocalDateTime;
 
+import com.crmbot.chatbot.Execoes.PedidoNaoEncontradoException;
+import com.crmbot.chatbot.Execoes.TelNaoEcontrado;
 import com.crmbot.chatbot.Model.Intems;
 import com.crmbot.chatbot.Model.Pedidos;
 import com.crmbot.chatbot.Service.ContatosService;
@@ -89,6 +91,9 @@ public class ApiController {
 @GetMapping("/GetNumero")
 public ResponseEntity<List<Pedidos>> getNumero(@RequestParam("numero") String numero) {
     List<Pedidos> pedidos = contatosService.buscaPedidoPorTelefone(numero);
+    if(pedidos == null || pedidos.isEmpty()){
+        throw new TelNaoEcontrado(" numero Não Econtrado");
+    }
     return ResponseEntity.ok(pedidos);
 }
 
@@ -104,46 +109,43 @@ public ResponseEntity<List<Intems>> getEstoque(@RequestParam("NomeProduto") Stri
 
     @PostMapping("/api/pedidos/{idpedido}/finalizar")
     public ResponseEntity<?> finalizarPedidos(@PathVariable("idpedido") Long idpedido) {
-        try {
+  
             Pedidos pedidoFinalizado = contatosService.finalizarpedido(idpedido); 
+            if (pedidoFinalizado == null) {
+                throw new PedidoNaoEncontradoException("Pedido não encontrado.");
+            }
             return ResponseEntity.ok(pedidoFinalizado); 
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body("Erro interno ao finalizar o pedido");
-        }
+       
     }
 
     @PostMapping("/api/pedidos/{idpedido}/EmAndamento")
     public ResponseEntity<?> PedidosEmAndamento(@PathVariable("idpedido") Long idpedido){
-        try {
+   
 
             Pedidos pedidoEmAndamento = contatosService.EmAndamentos(idpedido);
+            if (pedidoEmAndamento == null) {
+                throw new PedidoNaoEncontradoException("Pedido não encontrado.");
+            }
             return ResponseEntity.ok(pedidoEmAndamento);
             
-        } catch (Exception e) {
-
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-            // TODO: handle exception
-        }
+     
     }
 
     @PostMapping("/api/pedidos/{idpedido}/SaiuPraEntrega")
     public ResponseEntity<?> SaiuPraEntrega(@PathVariable("idpedido") Long idpedido){
-        try {
+    
             Pedidos SaiuPraentrega = contatosService.SaiuPraEntrega(idpedido);
+            if (SaiuPraentrega == null) {
+                throw new PedidoNaoEncontradoException("Pedido não encontrado.");
+            }
 
             return ResponseEntity.ok(SaiuPraentrega);
-        } catch (Exception e) {
-
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-            // TODO: handle exception
         }
-    }
+    
 
     @DeleteMapping("/api/pedidos/{idIntems}/excluir")
     public ResponseEntity<?> excluirintem(@PathVariable("idIntems") Long idIntems){
-        try {
+   
             
             boolean sucesso = contatosService.ExcluirdoEstoque(idIntems);
             if (sucesso) {
@@ -151,17 +153,16 @@ public ResponseEntity<List<Intems>> getEstoque(@RequestParam("NomeProduto") Stri
             } else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Intem não encontrado.");
             }
-        } catch (Exception e) {
+     
             // TODO: handle exception
 
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(" erro ao excluir intem  do estoque ");
-        }
+     
     }
 
     @DeleteMapping("/api/pedidos/{idpedido}/cancelar")
     public ResponseEntity<?> cancelarPedidos(@PathVariable("idpedido") Long idpedido){
 
-        try {
+      
             boolean sucesso = contatosService.cancelarPedido(idpedido); 
 
             if (sucesso) {
@@ -169,9 +170,7 @@ public ResponseEntity<List<Intems>> getEstoque(@RequestParam("NomeProduto") Stri
             } else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pedido não encontrado.");
             }
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao cancelar o pedido: " + e.getMessage());
-        }
+   
     }
 
 
