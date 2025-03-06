@@ -92,7 +92,7 @@ public class ApiController {
 public ResponseEntity<List<Pedidos>> getNumero(@RequestParam("numero") String numero) {
     List<Pedidos> pedidos = contatosService.buscaPedidoPorTelefone(numero);
     if(pedidos == null || pedidos.isEmpty()){
-        throw new TelNaoEcontrado(" numero Não Econtrado");
+        throw new TelNaoEcontrado(" numero Não Econtrado: " + numero);
     }
     return ResponseEntity.ok(pedidos);
 }

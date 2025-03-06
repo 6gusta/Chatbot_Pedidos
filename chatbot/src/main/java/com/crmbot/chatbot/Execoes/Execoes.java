@@ -25,7 +25,7 @@ public class Execoes {
   
     @ExceptionHandler(TelNaoEcontrado.class)
     public ResponseEntity<String> handleTelNaoEcontrado(TelNaoEcontrado ex) {
-        logger.error("Erro: Número não encontrado", ex);
+        logger.error("Erro: NUMERO NÃO ECONTRANDO", ex);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 

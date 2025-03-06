@@ -364,7 +364,7 @@ buscarPedidosBtn.addEventListener('click', function () {
             })
             .catch(error => {
                 console.error('Erro ao buscar pedidos:', error);
-                alert('Erro ao buscar pedidos.');
+                alert('não Econtramos seu pedido!! teste busca novamente.');
             });
     } else {
         alert('Por favor, insira um número de telefone.');

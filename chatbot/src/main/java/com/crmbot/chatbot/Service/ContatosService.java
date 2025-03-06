@@ -7,7 +7,6 @@ import com.crmbot.chatbot.Model.Intems;
 import com.crmbot.chatbot.Model.Pedidos;
 import com.crmbot.chatbot.Repository.IntesRepository;
 import com.crmbot.chatbot.Repository.PedidosRepository;
-import com.crmbot.chatbot.Websocket.WebSocketEndpoint;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import org.springframework.cache.annotation.Cacheable;
@@ -265,7 +264,7 @@ public boolean cancelarPedido(Long pedidoId) {
     // Aqui você atualiza o pedido no banco de dados, etc.
 
     // Depois, notifique todos os clientes via WebSocket
-    WebSocketEndpoint.enviarAtualizacao(pedidoId, "Finalizado");
+   // WebSocketEndpoint.enviarAtualizacao(pedidoId, "Finalizado");
 }
 
 
