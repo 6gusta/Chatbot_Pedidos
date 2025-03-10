@@ -22,9 +22,6 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: 📦 3. Instalar dependências do projeto
-        run: mvn clean install --quiet
-
       - name: ✅ 4. Rodar os testes automatizados
         run: mvn test
 
