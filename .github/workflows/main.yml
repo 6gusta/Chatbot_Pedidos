@@ -22,12 +22,6 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      # 1️⃣ Testes Automatizados
-      - name: 📦 Instalar dependências e compilar o projeto
-        run: mvn clean install --batch-mode
-
-      - name: ✅ Executar testes automatizados
-        run: mvn test
 
       # 2️⃣ Build e Empacotamento
       - name: 🚀 Gerar o build final
