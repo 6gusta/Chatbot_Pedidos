@@ -1,4 +1,4 @@
-name: Simple CI
+name: CI Pipeline
 
 on:
   push:
@@ -22,5 +22,17 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: ✅ Verificar estrutura do projeto
-        run: ls -la
+      # 1️⃣ Testes Automatizados
+      - name: 📦 Instalar dependências e compilar o projeto
+        run: mvn clean install --batch-mode
+
+      - name: ✅ Executar testes automatizados
+        run: mvn test
+
+      # 2️⃣ Build e Empacotamento
+      - name: 🚀 Gerar o build final
+        run: mvn package
+
+      # 3️⃣ Verificações de Qualidade
+      - name: 🔎 Rodar o SonarQube (ou ferramenta alternativa)
+        run: mvn sonar:sonar -Dsonar.projectKey=meu-projeto -Dsonar.host.url=https://sonarqube.meu-servidor.com
