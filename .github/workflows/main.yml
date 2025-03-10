@@ -22,7 +22,7 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      # Instalar dependências e rodar build
       - name: 📦 Instalar dependências do Maven
         run: mvn clean install --batch-mode
-        working-directory: ./Chatbot_Pedidos
+        working-directory: ./Chatbot_Pedidos/chatbot
+
