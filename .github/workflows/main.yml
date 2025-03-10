@@ -22,12 +22,6 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-   
-
-      # 2️⃣ Build e Empacotamento
-      - name: 🚀 Gerar o build final
-        run: mvn package
-
-      # 3️⃣ Verificações de Qualidade
-      - name: 🔎 Rodar o SonarQube (ou ferramenta alternativa)
-        run: mvn sonar:sonar -Dsonar.projectKey=meu-projeto -Dsonar.host.url=https://sonarqube.meu-servidor.com
+      # Instalar dependências e rodar build
+      - name: 📦 Instalar dependências e gerar build
+        run: mvn clean install --batch-mode
