@@ -10,7 +10,7 @@ body {
 }
 
 header {
-    background-color:#F0F0F0; /* Azul forte */
+    background: linear-gradient(45deg, rgba(52, 152, 219, 0.7), rgba(46, 204, 113, 0.7));
     color: #333;
     padding: 40px;
     text-align: center;
@@ -32,11 +32,14 @@ h3 {
     font-size: 1.5rem;
     color: black; /* Subtítulo mais suave */
 }
+p{
+    color: var();
+}
 
 button {
     padding: 12px 24px;
     margin: 10px 5px;
-    background-color: #28a745;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 1), rgba(46, 204, 113, 1)); 
     color: white;
     border: none;
     border-radius: 25px; /* Bordas bem arredondadas para dar um toque moderno */
@@ -57,7 +60,8 @@ button.finalizar {
 
 button:hover {
     transform: translateY(-4px); /* Efeito de elevação para dar sensação de profundidade */
-    background-color: #218838; /* Cor do botão de sucesso quando passa o mouse */
+    background-color: #218838;
+/* Cor do botão de sucesso quando passa o mouse */
 }
 
 button.cancelar:hover {
@@ -74,6 +78,9 @@ table {
     margin-top: 30px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra para a tabela */
     border-radius: 10px; /* Bordas arredondadas para uma aparência mais suave */
+    background-color: var(--table-background); /* Cor de fundo da tabela */
+    overflow: hidden;  /* Garante que os cantos arredondados fiquem perfeitos */
+    border-top: 3px solid #2980b9; 
 }
 
 table, th, td {
@@ -85,21 +92,35 @@ th, td {
     text-align: left;
     font-size: 1.1rem;
     color: #333;
-    background-color: #ffffff;
+    background-color: #ffffff; /* Cor de fundo das células */
+    border-bottom: 1px solid #ddd; 
+    /* Adicionando bordas finas para uma separação mais suave */
+    background-color: var(  --background-color);
+    color: var();
 }
 
 th {
-    background-color: #555555;
+    background-color: var(--table-header-background);
     color: white;
     font-weight: 700;
+    text-transform: uppercase;
+    border-left: 1px solid #ddd;  /* Para um visual mais impactante no cabeçalho */
 }
 
 tr:nth-child(even) {
     background-color: #f9f9f9; /* Alternância de cores nas linhas */
 }
 
+
 tr:hover {
     background-color: #f1f1f1; /* Efeito de hover nas linhas */
+}
+tr:hover {
+    background-color: #f1f1f1; /* Efeito de hover nas linhas */
+    cursor: pointer; /* Alterando o cursor para indicar interação */
+}
+td, th {
+    transition: background-color 0.3s ease; /* Transição suave nas alterações de fundo */
 }
 
 input, select {
@@ -265,5 +286,80 @@ canvas {
 /* Adicionando um pouco de espaçamento */
 div {
     margin-top: 20px;
+}
+:root {
+    /* Tema Claro */
+    --background-color: #f4f4f9;
+    --header-background: #F0F0F0;
+    --button-background: linear-gradient(135deg, rgba(52, 152, 219, 1), rgba(46, 204, 113, 1));
+    --button-hover-background: #218838;
+    --table-background: #ffffff;
+    --table-header-background: #555555;
+    --footer-background: #333;
+    --input-focus-border: #007bff;
+    --modal-background: rgba(0,0,0,0.4);
+}
+
+[data-theme="dark"] {
+    /* Tema Escuro */
+    --background-color: #181818;
+    --header-background: #222222;
+    --button-background: linear-gradient(135deg, rgba(39, 174, 96, 1), rgba(41, 128, 185, 1));
+    --button-hover-background: #1e7e34;
+    --table-background: #333333;
+    --table-header-background: #444444;
+    --footer-background: #111;
+    --input-focus-border: #ff8c00;
+    --modal-background: rgba(0,0,0,0.6);
+    
+
+    h1 {
+        color: white;
+    }
+
+    th, td{
+              color: white;
+    }
+    p{
+        color: white;
+    }
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    transition: background 0.3s ease; /* Transição suave */
+}
+
+header {
+    background-color: var(--header-background);
+    color: #333;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Restante do CSS segue a mesma estrutura, mas usando as variáveis no lugar de cores fixas, por exemplo: */
+
+button {
+    background: var(--button-background);
+}
+
+button:hover {
+    background-color: var(--button-hover-background);
+}
+
+table th {
+    background-color: var(--table-header-background);
+}
+
+footer {
+    background-color: var(--footer-background);
+    color: white;
 }
 

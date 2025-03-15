@@ -1,50 +1,60 @@
 {
-    "faq": [
-      {
-        "keywords": ["criação", "fundação", "inauguração", "criacao", "fundacao", "inauguracao"],
-        "answer": "O Museu do Doce de Pelotas foi inaugurado em 2004, com o objetivo de preservar e divulgar a história da tradição doceira da cidade."
-      },
-      {
-        "keywords": ["objetivo", "propósito", "proposito"],
-        "answer": "O objetivo do Museu do Doce é preservar a memória da tradição doceira de Pelotas, reconhecida como patrimônio cultural imaterial, e divulgar essa história para o público."
-      },
-      {
-        "keywords": ["prédio", "arquitetura", "predio"],
-        "answer": "O Museu do Doce está situado em um prédio histórico no centro de Pelotas, que foi cuidadosamente restaurado para abrigar o museu. A arquitetura do prédio é um destaque, com detalhes que remetem à época áurea da produção de doces na cidade."
-      },
-      {
-        "keywords": ["horário", "funcionamento", "aberto", "horario"],
-        "answer": "O Museu do Doce de Pelotas funciona de terça a sexta-feira, das 9h às 18h, e aos sábados e domingos, das 14h às 18h. O museu está fechado às segundas-feiras."
-      },
-      {
-        "keywords": ["ingresso", "entrada", "valor"],
-        "answer": "A entrada para o Museu do Doce é gratuita. No entanto, é recomendável verificar se há alguma alteração nos preços ou nas políticas de entrada antes de planejar sua visita."
-      },
-     {
-        "keywords": ["prefeito", "politico", "prefeitura", "político"],
-        "answer": "O prefeito de Pelotas na época da criação do Museu do Doce em 2004 era Bernardo de Souza."
-      },
-      {
-        "keywords": ["cômodos", "quantidade", "comodos"],
-        "answer": "O número exato de cômodos no Museu do Doce pode variar dependendo das exposições e da configuração atual. Recomenda-se entrar em contato com o museu para obter informações específicas."
-      },
-      {
-        "keywords": ["peças", "exibidas"],
-        "answer": "O número de peças exibidas no Museu do Doce pode variar dependendo das exposições temporárias e permanentes. Para informações atualizadas, é aconselhável visitar o site oficial do museu ou entrar em contato diretamente."
-      },
-      {
-        "keywords": ["estilo arquitetônico", "prédio", "arquitetura", "estilo arquitetonico"],
-        "answer": "O prédio do Museu do Doce é um exemplo da arquitetura neoclássica, característica de muitos edifícios históricos em Pelotas."
-      },
-      {
-        "keywords": ["arquiteto", "prédio", "predio"],
-        "answer": "As informações específicas sobre o arquiteto responsável pelo prédio do Museu do Doce não estão prontamente disponíveis. É recomendável entrar em contato com o museu para obter detalhes sobre a história arquitetônica do edifício."
-      },
-      {
-        "keywords": ["endereço", "local", "chegar"],
-        "answer": "O Museu está localizado no centro da cidade de Pelotas, no endereço Praça Coronel Pedro Osório, Casarão 8 - Centro, Pelotas - RS, 96015-010"
-      }
-    ],
-      "default": "Desculpe, mas no momento não consigo responder sua pergunta. Você pode entrar em contato com a secretaria do Museu do Doce através do número: (53) 3284-4322"
-  }
+  "faq": [
+    {
+      "keywords": ["meu nome é", "chamo-me", "sou o", "sou a", "nome", "olá", "oi", "oii", "opa", "eae", "salve", "fala", "bom dia", "boa tarde", "boa noite", "hey", "hi", "hello"],
+       "answer": "Olá, ! Bem-vindo ao nosso ChatBot. Poderia me dizer qual é o seu pedido? \n\n📌 *Menu*\n🍰 1 - Tiramisu\n🍹 2 - Suco Natural\n🍦 3 - Sorvete Artesanal\n🍤 4 - Risoto de Camarão\n🥤 5 - Refrigerante Lata\n🍕 6 - Pizza Margherita\n🍕 7 - Pizza Doce\n🍔 8 - Hambúrguer\n🍝 9 - Espaguete à Bolonhesa\n🥩 10 - Churrasco Misto\n🍔 11 - Cheeseburger\n🥗 12 - Caesar Salad\n\n💬 *Digite o número do item para fazer seu pedido!*",
+
+      "image": "https://exemplo.com/menu.jpg"
+    },
   
+    {
+      "keywords": ["pedido","gostaria de um ","vou pedir","eu quero","Tiramisu", "Suco Natural", "Sorvete Artesanal", "Risoto de Camarão", "Refrigerante Lata", "quakqyercoisa", "Pizza Margherita", "pizza doce", "hamburguer", "Espaguete à Bolonhesa", "Churrasco Misto", "Cheeseburger", "Caesar Salad"],
+
+      "answer": "Ótima escolha,  Aceitamos as seguintes formas de pagamento:\n💰 *Dinheiro*\n💳 *Cartão de Crédito/Débito*\n📲 *PIX*\n\nComo você gostaria de pagar?",
+      "image": "https://exemplo.com/pedido.jpg"
+    },
+  
+    {
+      "keywords": ["pagamento","formadepagamento:","pagar", "pagamento", "formas de pagamento", "pix", "dinheiro", "cartão", "boleto", "aceita pix", "aceita cartão", "passa crédito", "passa débito", "como pagar", "pagar na entrega", "tem troco", "preciso pagar antes"],
+      "answer": "Muito Obrigado Pelo seu pedido me infome seu numero para pode acompanha o pedido",
+      "image": "https://exemplo.com/pagamento.jpg"
+    },
+    {
+      "keywords": ["numero:","telefone", "celular", "whatsapp", "número", "contato", "preciso informar telefone", "deixar número", "mandar telefone", "meu telefone é", "ligar para mim"],
+      "answer": "Certo voce vai ser redirecionado para a tela de acompanhemnto do seu pedido",
+      "image": "https://exemplo.com/contato.jpg"
+    },
+  
+    {
+      "keywords": ["entrega", "frete", "endereço", "delivery", "chegada", "tempo de entrega", "quando chega", "prazo de entrega", "valor do frete", "onde entregam", "qual a taxa", "chega rápido", "entrega em casa", "motoqueiro", "motoboy"],
+      "answer": "Fazemos entregas em toda a cidade! 🚚\n\nPor favor, envie seu endereço completo para calcularmos o valor da entrega.",
+      "image": "https://exemplo.com/entrega.jpg"
+    },
+    {
+      "keywords": ["horário", "funcionamento", "horas", "aberto", "fechado", "que horas abre", "que horas fecha", "abre agora", "horário de atendimento", "até que horas"],
+      "answer": "Nosso horário de funcionamento é:\n🕒 Segunda a Sexta: 10h - 23h\n🕒 Sábado e Domingo: 12h - 00h",
+      "image": "https://exemplo.com/horario.jpg"
+    },
+    {
+      "keywords": ["cancelar pedido", "desistir", "quero cancelar", "cancelamento", "trocar pedido", "mudar pedido", "alterar pedido", "refazer pedido"],
+      "answer": "Entendemos, {{nome}}! Para cancelar ou alterar seu pedido, entre em contato pelo WhatsApp ou telefone.",
+      "image": "https://exemplo.com/cancelamento.jpg"
+    },
+    {
+      "keywords": ["promoção", "desconto", "cupom", "oferta", "tem promoção", "lanche mais barato", "promo", "black friday", "cupom de desconto", "tem desconto"],
+      "answer": "Estamos sempre com promoções especiais! 🎉 Confira nossas ofertas no site ou pergunte sobre descontos disponíveis hoje.",
+      "image": "https://exemplo.com/promocao.jpg"
+    },
+    {
+      "keywords": ["tempo de espera", "demora", "demorando", "onde está meu pedido", "já saiu", "pedido pronto", "quanto tempo leva", "demora muito", "tempo de preparo"],
+      "answer": "O tempo médio de entrega é de *30 a 45 minutos*, dependendo da sua localização. Caso tenha alguma dúvida, entre em contato!",
+      "image": "https://exemplo.com/tempo.jpg"
+    },
+    {
+      "keywords": ["erro", "problema", "não consigo pedir", "pedido não foi", "erro no pedido", "meu pedido sumiu", "não recebi confirmação"],
+      "answer": "Parece que houve um problema! 😕\nPor favor, tente novamente ou entre em contato para verificarmos.",
+      "image": "https://exemplo.com/erro.jpg"
+    }
+  ],
+  "default": "Desculpe, não entendi sua pergunta. Para fazer um pedido, diga 'Quero pedir' e te ajudaremos!"
+}

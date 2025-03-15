@@ -260,12 +260,7 @@ public boolean cancelarPedido(Long pedidoId) {
 
     
    }
-   public void finalizarPedido(String pedidoId) {
-    // Aqui você atualiza o pedido no banco de dados, etc.
 
-    // Depois, notifique todos os clientes via WebSocket
-   // WebSocketEndpoint.enviarAtualizacao(pedidoId, "Finalizado");
-}
 
 
 

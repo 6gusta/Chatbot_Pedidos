@@ -8,12 +8,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="2928979-icone-de-processamento-de-pedido-vetor.jpg" type="image/x-icon">
 </head>
 <body>
     <div class="container">
         <header>
             <h1>Restaurante</h1>
             <h2>Digite o numero do seu telefone para poder acompanhar seu pedido!</h2>
+            <button id="theme-toggle"  class="search-button">🌙 Mudar Tema</button>
+
             
         </header>
         <div class="search-box">
@@ -22,10 +25,11 @@
         </div>
 
         <div id="orderModal" class="modal">
-
+            
 
             <h3>Efetue o pagamento para número PIX: (61991018333)</h3>
             <h3>Você terá o tempo de <span id="countdown">05:00</span> para efetuar o pagamento.</h3>
+            <h3>Caso queria cancela basta não Efetua o Pagamento </h3>
 
             <p id="statusMessage"></p>
 
@@ -37,24 +41,9 @@
                 <div class="order-details" id="orderDetails">
                     <!-- Os detalhes do pedido serão carregados aqui -->
                 </div>
-                <div class="order-status" id="orderStatus">
+                <div   style="background-color:transparent;">
                     <!-- Os status do pedido serão carregados aqui -->
-                    <div id="statusCompleted" class="status-step status-completed" style="display: none;">
-                        <i class="fas fa-check-circle"></i> <!-- ícone para completado -->
-                        <span>Status Completado</span>
-                    </div>
-                    
-                    <div id="statusPending" class="status-step status-pending" style="display: none;">
-
-                        <img src="4903183.png" alt="">
-      
-                        <span>Status Pendente</span>
-                    </div>
-                    
-                    <div id="statusCancelled" class="status-step status-cancelled" style="display: none;">
-                        <i class="fas fa-times-circle"></i> <!-- ícone para cancelado -->
-                        <span>Status Cancelado</span>
-                    </div>
+                  
                 </div>
             </div>
         </div>

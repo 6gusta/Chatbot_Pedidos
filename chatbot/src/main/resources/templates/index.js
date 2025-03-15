@@ -165,6 +165,7 @@ function saiuPraEntrega(pedidoId) {
                 pedidoRow.setAttribute('data-pedido-id', pedidoId);
                 pedidoRow.innerHTML = `
                     <td>${pedidoAtualizado.nome || 'Nome não informado'}</td>
+                     <td>${pedidoAtualizado.total || 'Nome não informado'}</td>
                     <td>${pedidoAtualizado.intemPedido || 'Item não informado'}</td>
                     <td>${pedidoAtualizado.formaDePagamento || 'Pagamento não informado'}</td>
                     <td>${new Date(pedidoAtualizado.dataHoraRecebimento).toLocaleString() || 'Data não informada'}</td>
@@ -235,7 +236,7 @@ function emAndamento(pedidoId) {
         })
         .catch(error => {
             console.error('Erro ao marcar pedido como "Em Andamento":', error);
-            alert('Erro ao atualizar status do pedido.');
+          
         });
 }
 
@@ -263,11 +264,12 @@ function finalizarPedido(pedidoId) {
             const pedidoRow = document.createElement('tr');
             pedidoRow.setAttribute('data-pedido-id', pedidoId);
             pedidoRow.innerHTML = `
-                <td>${pedidoFinalizado.nome}</td>
-                <td>${pedidoFinalizado.intemPedido}</td>
-                <td>${pedidoFinalizado.formaDepagamneto}</td>
-                <td>${pedidoFinalizado.dataHoraRecebimento}</td>
-            `;
+               <td>${pedidoFinalizado.nome}</td>
+    <td>${pedidoFinalizado.intemPedido}</td>
+    <td>${pedidoFinalizado.formaDepagamneto}</td>
+    <td>${pedidoFinalizado.total}</td>
+    <td>${pedidoFinalizado.dataHoraRecebimento}</td> <!-- Corrigido -->
+`;
             pedidosListFinalizados.appendChild(pedidoRow);
 
             // Mostrar a tabela de finalizados
@@ -661,6 +663,19 @@ document.getElementById("adicionarEstoqueBtn3").addEventListener("click", functi
         excluirItemEstoque(idIntems);
     } else {
         alert("ID do item não encontrado.");
+    }
+});
+
+const toggleButton = document.getElementById('theme-toggle');
+    
+// Função para alternar o tema
+toggleButton.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    
+    if (currentTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
     }
 });
 

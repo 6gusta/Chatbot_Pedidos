@@ -14,6 +14,9 @@
         <button id="configButton" title="Abrir Configurações">⚙️ Configurações</button>
         <button id="estoqueButton" title="Abrir Estoque">🛒 Estoque</button>
         <button id="botaoMargemLucro" class="dashboard-button">📊 Margem de Lucro</button>
+        <button id="theme-toggle">🌙Alternar Tema</button>
+        
+        
     </header>
 
     <!-- Navegação -->
@@ -30,8 +33,8 @@
         <section id="pedidosPendente" class="pedidos-tabela" style="display: block;">
             <h2>Pedidos Pendentes</h2>
             <div id="loadingPendentes" class="loading" style="display: none;">Carregando...</div>
-            <table id="pedidosTablePendentes" style="display: none;">
-                <thead>
+            <table id="pedidosTablePendentes" style="display: none;" >
+                <thead >
                     <tr>
                         <th>Nome do Cliente</th>
                         <th>Item do Pedido</th>
@@ -39,7 +42,7 @@
                           <th>Numero de Telefone</th>
                         <th>Data e Horário</th>
                         <th>Valor Total</th>
-                        <th>Ações</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="pedidosListPendentes"></tbody>
@@ -56,7 +59,10 @@
                         <th>Nome do Cliente</th>
                         <th>Item do Pedido</th>
                         <th>Forma de Pagamento</th>
+                          <th>Numero de Telefone</th>
                         <th>Data e Horário</th>
+                        <th>Valor Total</th>
+                        <th></th
                     </tr>
                 </thead>
                 <tbody id="pedidosListEmAndamento"></tbody>
@@ -73,7 +79,10 @@
                         <th>Nome do Cliente</th>
                         <th>Item do Pedido</th>
                         <th>Forma de Pagamento</th>
+                        <th>Telefone</th>
                         <th>Data e Horário</th>
+                        <th>Valor Total</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="pedidosListSaiuPraEntrega"></tbody>
@@ -92,6 +101,7 @@
                         <th>Forma de Pagamento</th>
                         <th>Data e Horário</th>
                         <th>Número do Cliente</th>
+                        <th>Valor Total</th>
                     </tr>
                 </thead>
                 <tbody id="pedidosListFinalizados"></tbody>

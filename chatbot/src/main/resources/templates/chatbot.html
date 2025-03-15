@@ -5,93 +5,168 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChatBot Customizado</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
+            background: linear-gradient(45deg, rgba(52, 152, 219, 0.7), rgba(46, 204, 113, 0.7));
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(135deg, #121212, #1e1e1e);
             color: white;
             overflow: hidden;
+            padding-bottom: 100px; /* Adicionado espaço extra para o teclado */
         }
+
+        /* Caixa de chat */
         .chat-container {
-            width: 1450px;
+            width: 80%;
+            max-width: 800px;
+            height: 85vh;
             background: rgba(0, 0, 0, 0.8);
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-            overflow: hidden;
-            height: 700px;
-        
-            border: 2px solid  #D9D9D9
-            
-;      }
-        .chat-header {
-            background:   #D9D9D9;
-            padding: 15px;
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-        }
-        .chat-box {
-            height: 400px;
-            overflow-y: auto;
-            padding: 15px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            background: #1a1a1a;
+            position: relative;
+            overflow: hidden;
         }
+
+        .chat-container:hover {
+            transform: scale(1.05);
+        }
+
+        /* Cabeçalho */
+        .chat-header {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(46, 204, 113, 0.9));
+            padding: 25px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .chat-header:hover {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 1), rgba(46, 204, 113, 1));
+        }
+
+        /* Caixa de mensagens */
+        .chat-box {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: #121212;
+            color: #ecf0f1;
+            position: relative;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            overflow-x: hidden;
+            padding-bottom: 100px; /* Ajustado para dar mais espaço para a última mensagem */
+        }
+
+        /* Animação de fade-in para mensagens */
+        @keyframes messageFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .message {
-            padding: 10px;
-            border-radius: 8px;
-            max-width: 80%;
+            padding: 15px;
+            border-radius: 25px;
+            max-width: 75%;
             word-wrap: break-word;
+            position: relative;
+            animation: messageFadeIn 0.7s ease-out forwards;
         }
+
         .user-message {
-            background:  rgba(255, 255, 255, 0.1);
+            background: rgba(46, 204, 113, 0.8);
             align-self: flex-end;
+            border-top-left-radius: 0;
         }
+
         .bot-message {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(52, 152, 219, 0.8);
             align-self: flex-start;
+            border-top-right-radius: 0;
         }
+
+        /* Caixa de entrada */
         .input-container {
             display: flex;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            background: rgba(52, 152, 219, 0.2);
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
         }
+
         input {
-            
-            padding: 10px;
+            padding: 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 50px;
             outline: none;
             background: rgba(255, 255, 255, 0.1);
             color: white;
-            height: 60px;
-            width: 1200px;
-            font-size: 20px;
-            margin-left: 200px;
-        }
-        button {
-            padding: 10px;
-            margin-left: -120px;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-weight: bold;
-            width: 100px;
-            height: 50px;
-            margin-top: 15px;
             font-size: 18px;
-
+            width: 85%;
+            transition: background 0.3s;
         }
+
+        input:focus {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        button {
+            padding: 20px;
+            margin-left: 15px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            background: rgba(52, 152, 219, 0.8);
+            color: white;
+            font-size: 22px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
         button:hover {
-            background:  #D9D9D9;
+            transform: scale(1.1);
+            background: rgba(52, 152, 219, 1);
+        }
+
+        /* Efeito de digitação do bot */
+        .typing-animation {
+            display: inline-block;
+            width: 0;
+            height: 20px;
+            background: transparent;
+            border-right: 3px solid #fff;
+            animation: typing 1s steps(30) infinite;
+        }
+
+        @keyframes typing {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -104,51 +179,132 @@
             <button onclick="sendMessage()">➤</button>
         </div>
     </div>
-
     <script>
+ 
+    let userName = '';  // Variável para armazenar o nome do usuário
+
+    // Função que adiciona uma mensagem inicial estática
+window.onload = function() {
+    const chatBox = document.getElementById('chatBox');
+    const welcomeMessage = document.createElement('div');
+    welcomeMessage.classList.add('message', 'bot-message');
+    welcomeMessage.innerText = "Olá! Seja bem-vindo ao nosso ChatBot! 😄\n\nEu sou seu assistente virtual. Para começarmos, siga este formato ao digitar suas informações:\n\n" +
+        "🔹 *Nome:* Digite 'nome' seguido do seu nome.\n" +
+        "🔹 *Pedido:* Digite 'pedido' seguido do que deseja.\n" +
+        "🔹 *Forma de pagamento:* Digite 'pagamento' seguido da forma de pagamento.\n\n" +
+        "Exemplo:\n" +
+        "'nome João Silva'\n" +
+        "'pedido Pizza de calabresa'\n" +
+        "'pagamento Cartão de crédito'\n\n" +
+        "Agora, por favor, digite seu nome para começarmos! 😊";
+    chatBox.appendChild(welcomeMessage);
+    scrollToBottom();
+};
 
 
-async function sendMessage() {
-    const userInput = document.getElementById("userInput").value;
-    
-    // Definindo o corpo da requisição com a mensagem do usuário
-    const requestBody = {
-        message: userInput
-    };
+    let chatHistory = []; // Array para armazenar mensagens
 
-    try {
-        // Fazendo a requisição para o backend
-        const response = await fetch('http://localhost:8080/bot/chat', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestBody)
-        });
+    async function sendMessage() {
+        const userInput = document.getElementById("userInput").value;
+        if (!userInput.trim()) return; // Impede envio de mensagem vazia
 
-        // Verificando se a resposta foi bem-sucedida
-        if (response.ok) {
-            const data = await response.json();  // Fazendo o parsing da resposta JSON
-            console.log('Resposta do bot:', data.response);  // Exibindo a resposta no console
+        // Adiciona a mensagem do usuário ao histórico
+        chatHistory.push({ sender: "user", message: userInput });
 
-            // Exibindo a resposta na interface
-            const chatBox = document.getElementById('chatBox');
-            const botMessage = document.createElement('div');
-            botMessage.classList.add('message', 'bot-message');
-            botMessage.innerText = data.response;
-            chatBox.appendChild(botMessage);
-        } else {
-            console.error('Erro na requisição:', response.status);
+        // Exibe mensagem do usuário no chat
+        const chatBox = document.getElementById("chatBox");
+        const userMessage = document.createElement('div');
+        userMessage.classList.add('message', 'user-message');
+        userMessage.innerText = userInput;
+        chatBox.appendChild(userMessage);
+
+        // Limpa o input
+        document.getElementById("userInput").value = '';
+
+        // Captura o nome do usuário na primeira mensagem
+        if (!userName) {
+            userName = userInput.trim();  // Assume que o nome é a primeira mensagem
+            console.log('Nome do usuário:', userName);
         }
-    } catch (error) {
-        console.error('Erro na requisição:', error);
+
+        try {
+            const response = await fetch('http://localhost:8080/bot/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: userInput })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Resposta do bot:', data.response);
+
+                // Adiciona a resposta do bot ao histórico
+                chatHistory.push({ sender: "bot", message: data.response });
+
+                // Exibe resposta do bot no chat
+                const botMessage = document.createElement('div');
+                botMessage.classList.add('message', 'bot-message');
+                botMessage.innerText = data.response;
+                chatBox.appendChild(botMessage);
+
+                // Envia histórico atualizado para o backend
+                sendDataToBackend();
+            } else {
+                console.error('Erro na requisição:', response.status);
+            }
+        } catch (error) {
+            console.error('Erro na requisição:', error);
+        }
     }
 
-    // Limpando o campo de entrada
-    document.getElementById("userInput").value = '';
-}
+    // Função para enviar todo o histórico de mensagens para o backend no endpoint @PostMapping("/sendData")
+    async function sendDataToBackend() {
+        try {
+            // Filtra apenas as mensagens enviadas pelo usuário
+            const userMessages = chatHistory.filter(msg => msg.sender === "user").slice(0, 4);
 
-       
+            if (userMessages.length < 4) {
+                console.warn("Ainda não há mensagens suficientes do usuário para enviar.");
+                return;
+            }
+
+            // Aqui usamos o nome capturado junto com as outras mensagens
+            const pedidos = {
+                nome: userName.replace(/^\S+\s*/, ""),  // Agora usa o nome capturado
+                intemPedido: userMessages[1].message.replace(/^\S+\s*/, ""),  
+                formaDepagamneto: userMessages[2].message.replace(/^\S+\s*/, ""),   
+                numero: userMessages[3].message.replace(/\D/g, "") , 
+               
+              
+            };
+
+            const response = await fetch('http://localhost:8080/sendData', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(pedidos)
+            });
+
+            if (!response.ok) {
+                console.error('Erro ao enviar dados:', response.status);
+            } else {
+                console.log('Dados enviados com sucesso!');
+                window.location.href = "busca.html";
+            }
+        } catch (error) {
+            console.error('Erro ao enviar dados para o backend:', error);
+        }
+    }
+
+    // Função para rolar a tela até o final
+    function scrollToBottom() {
+        const chatBox = document.getElementById('chatBox');
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+
+
     </script>
-</body>
+    
+
+ 
 </html>

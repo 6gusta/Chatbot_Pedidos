@@ -1,16 +1,14 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const telefoneInput = document.getElementById('search');
     const searchButton = document.getElementById('searchButton');
     let telefoneAtual = ""; // Variável para armazenar o número de telefone
+    let pedidoId = null; // Armazena o ID do pedido para cancelamento
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const pedidoNumero = urlParams.get('pedidoNumero');
-
-    searchButton.addEventListener('click', function() {
+    searchButton.addEventListener('click', function () {
         const Ntelefone = telefoneInput.value.trim();
         if (Ntelefone) {
             telefoneAtual = Ntelefone; // Armazena o telefone para atualizações
-            console.log("Telefone Atual: ", telefoneAtual); // Depuração
+            console.log("Telefone Atual: ", telefoneAtual);
             buscarTelefone(Ntelefone);
         } else {
             alert('Por favor, insira um número de telefone válido.');
@@ -19,10 +17,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Atualiza o conteúdo do modal a cada 10 segundos, chamando a função buscarTelefone
     setInterval(() => {
-        if (telefoneAtual) { // Verifica se há um número de telefone válido
+        if (telefoneAtual) {
             buscarTelefone(telefoneAtual);
         }
-    }, 10000); // 10000ms = 10 segundos
+    }, 10000); // 10 segundos
+
 });
 
 function buscarTelefone(numero) {
@@ -36,8 +35,8 @@ function buscarTelefone(numero) {
         .then(data => {
             console.log('Dados do número de telefone:', data);
             if (data && data.length > 0) {
-                // Atualiza somente o conteúdo do modal
                 const pedido = data[0]; // Supondo que o primeiro item contém o pedido
+                pedidoId = pedido.idpedido; // Agora, armazenando corretamente o ID do pedido
 
                 const statusColors = {
                     Pendente: "orange",
@@ -46,33 +45,35 @@ function buscarTelefone(numero) {
                 };
 
                 const orderDetailsElement = document.getElementById('orderDetails');
+
+                const isDarkMode = document.body.classList.contains('dark-mode');
+                const titleColor = 'black';
+                const valueColor = isDarkMode ? 'black' : 'inherit';
+
                 orderDetailsElement.innerHTML = `
-                    <div>
+                    <div style="background-color: #e0e0e0;">
                         <h3>Pedido #${pedido.numero}</h3>
-                        <p><strong>Nome:</strong> ${pedido.nome}</p>
-                        <p><strong>Item Pedido:</strong> ${pedido.intemPedido}</p>
-                         <p><strong>Total a Pagar:</strong> ${pedido.total}</p>
-                        <p><strong>Forma de Pagamento:</strong> ${pedido.formaDepagamneto}</p>
+                        <p><strong style="color: ${titleColor};">Nome:</strong> <span style="color: ${valueColor};">${pedido.nome}</span></p>
+                        <p><strong style="color: ${titleColor};">Item Pedido:</strong> <span style="color: ${valueColor};">${pedido.intemPedido}</span></p>
+                        <p><strong style="color: ${titleColor};">Total a Pagar:</strong> <span style="color: ${valueColor};">${pedido.total.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</span></p>
+                        <p><strong style="color: ${titleColor};">Forma de Pagamento:</strong> <span style="color: ${valueColor};">${pedido.formaDepagamneto}</span></p>
                         <p>
-                            <strong>Status:</strong> 
+                            <strong style="color: ${titleColor};">Status:</strong> 
                             <span style="color: ${statusColors[pedido.status] || 'black'};">
                                 ${pedido.status}
                             </span>
                         </p>
-                        <p><strong>Data e Hora de Recebimento:</strong> ${new Date(pedido.dataHoraRecebimento).toLocaleString()}</p>
+                        <p><strong style="color: ${titleColor};">Data e Hora de Recebimento:</strong> <span style="color: ${valueColor};">${new Date(pedido.dataHoraRecebimento).toLocaleString()}</span></p>
                     </div>
                 `;
 
-                // Exibir o modal, caso não esteja visível
                 const modal = document.getElementById('orderModal');
                 modal.style.display = 'block';
 
-                // Fechar o modal ao clicar no X
                 const closeModal = document.getElementById('closeModal');
                 closeModal.onclick = () => {
                     modal.style.display = 'none';
                 };
-
             } else {
                 alert('Nenhum pedido encontrado para este número.');
             }
@@ -82,19 +83,57 @@ function buscarTelefone(numero) {
             alert('Erro ao carregar os dados: ' + error.message);
         });
 }
+
+function cancelarPedido() {
+    if (!pedidoId) {
+        alert('Nenhum pedido encontrado para cancelar.');
+        return;
+    }
+
+    console.log(`Tentando cancelar pedido com ID: ${pedidoId}`);
+
+    fetch(`http://localhost:8080/api/pedidos/${pedidoId}/cancelar`, {
+        method: 'DELETE'
+    })
+        .then(response => {
+            if (!response.ok) {
+                return response.text().then(text => {
+                    throw new Error(text);
+                });
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log('Pedido cancelado:', data);
+            alert('Pedido cancelado com sucesso.');
+            document.getElementById('orderModal').style.display = 'none';
+        })
+        .catch(error => {
+            console.error('Erro ao cancelar pedido:', error);
+            alert('Erro ao cancelar o pedido: ' + error.message);
+        });
+}
+
+// Temporizador de 5 minutos para cancelamento automático do pedido
 let remainingTime = 300; // 5 minutos em segundos
-    const countdownElement = document.getElementById('countdown');
+const countdownElement = document.getElementById('countdown');
 
-    const timerInterval = setInterval(() => {
-        const minutes = Math.floor(remainingTime / 60);
-        const seconds = remainingTime % 60;
+const timerInterval = setInterval(() => {
+    const minutes = Math.floor(remainingTime / 60);
+    const seconds = remainingTime % 60;
 
-        countdownElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    countdownElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 
-        if (remainingTime <= 0) {
-            clearInterval(timerInterval); // Para o temporizador
-            alert('O tempo acabou! O pedido foi cancelado.');
-        }
+    if (remainingTime <= 0) {
+        clearInterval(timerInterval); // Para o temporizador
+        alert('O tempo acabou! O pedido foi cancelado.');
+        cancelarPedido(); // Cancela o pedido automaticamente
+    }
 
-        remainingTime--;
-    }, 1000);
+    remainingTime--;
+}, 1000);
+
+// Alternar tema (modo escuro)
+document.getElementById("theme-toggle").addEventListener("click", function () {
+    document.body.classList.toggle("dark-mode");
+});
