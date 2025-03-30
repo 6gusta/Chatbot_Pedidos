@@ -115,7 +115,7 @@ function cancelarPedido() {
 }
 
 // Temporizador de 5 minutos para cancelamento automático do pedido
-let remainingTime = 300; // 5 minutos em segundos
+let remainingTime = 50; // 5 minutos em segundos
 const countdownElement = document.getElementById('countdown');
 
 const timerInterval = setInterval(() => {

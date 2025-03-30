@@ -2,9 +2,7 @@
   "faq": [
     {
       "keywords": ["meu nome é", "chamo-me", "sou o", "sou a", "nome", "olá", "oi", "oii", "opa", "eae", "salve", "fala", "bom dia", "boa tarde", "boa noite", "hey", "hi", "hello"],
-       "answer": "Olá, ! Bem-vindo ao nosso ChatBot. Poderia me dizer qual é o seu pedido? \n\n📌 *Menu*\n🍰 1 - Tiramisu\n🍹 2 - Suco Natural\n🍦 3 - Sorvete Artesanal\n🍤 4 - Risoto de Camarão\n🥤 5 - Refrigerante Lata\n🍕 6 - Pizza Margherita\n🍕 7 - Pizza Doce\n🍔 8 - Hambúrguer\n🍝 9 - Espaguete à Bolonhesa\n🥩 10 - Churrasco Misto\n🍔 11 - Cheeseburger\n🥗 12 - Caesar Salad\n\n💬 *Digite o número do item para fazer seu pedido!*",
-
-      "image": "https://exemplo.com/menu.jpg"
+       "answer": "Olá, ! Bem-vindo ao nosso ChatBot. Poderia me dizer qual é o seu pedido? \n\n📌 *Menu*\n🍰 1 - Tiramisu\n🍹 2 - SucoNatural\n🍦 3 - SorveteArtesanal\n🍤 4 - RisotoDeCamarão\n🥤 5 - RefrigeranteLata\n🍕 6 - PizzaMargherita\n🍕 7 - PizzaDoce\n🍔 8 - Hambúrguer\n🍝 9 - EspagueteBolonhesa\n🥩 10 - ChurrascoMisto\n🍔 11 - Cheeseburger\n🥗 12 - CaesarSalad\n\n💬 *Digite o número do item para fazer seu pedido!*"
     },
   
     {

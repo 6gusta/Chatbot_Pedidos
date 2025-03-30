@@ -1,8 +1,10 @@
 package com.crmbot.chatbot.Config;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+@Configuration
 public class Config implements WebMvcConfigurer {
 
     @Override

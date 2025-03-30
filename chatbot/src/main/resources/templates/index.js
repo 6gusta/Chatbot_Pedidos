@@ -376,7 +376,6 @@ buscarPedidosBtn.addEventListener('click', function () {
 // Função para iniciar a contagem de 30 minutos e atualizar o pedido após o tempo
 function iniciarContagem(pedidoId, status, tempoConfig) {
     let tempo = tempoConfig * 60; // Converter minutos em segundos
-
     const countdownElement = document.getElementById('countdown');
     countdownElement.innerHTML = `Tempo restante: ${tempo} segundos`;
 
@@ -387,26 +386,38 @@ function iniciarContagem(pedidoId, status, tempoConfig) {
         if (tempo <= 0) {
             clearInterval(interval);
 
-            // Atualiza o pedido no backend automaticamente após o tempo
-            fetch(`http://localhost:8080/api/pedidos/${pedidoId}/finalizar`, {
+            let endpoint = "";
+           
+             if (status === "EmAndamento") {
+                endpoint = `http://localhost:8080/api/pedidos/${pedidoId}/EmAndamento`;
+            } else if (status === "saiuPraEntrega") {
+                endpoint = `http://localhost:8080/api/pedidos/${pedidoId}/SaiuPraEntrega`;
+            } else if (status === "finalizado") {
+                endpoint = `http://localhost:8080/api/pedidos/${pedidoId}/finalizar`;
+            }
+
+            fetch(endpoint, {
                 method: 'POST',
-                body: JSON.stringify({ status: status }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+                headers: { 'Content-Type': 'application/json' },
+                
             })
-                .then(response => response.json())
-                .then(data => {
-                    alert('O pedido foi atualizado automaticamente após o tempo definido!');
-                    countdownElement.innerHTML = ''; // Limpa o contador após a finalização
-                })
-                .catch(error => {
-                    console.error('Erro ao finalizar pedido automaticamente:', error);
-                    alert('Erro ao finalizar pedido automaticamente.');
-                });
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(text => { throw new Error(`Erro ao atualizar pedido: ${text}`); });
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert(`Pedido ${pedidoId} atualizado para "${status}"!`);
+            })
+            .catch(error => {
+                console.error('Erro ao atualizar status do pedido:', error);
+                alert('Erro ao atualizar status do pedido.');
+            });
         }
-    }, 1000); // Atualiza o contador a cada 1 segundo
+    }, 1000);
 }
+
 
 // Aplicar status e iniciar contagem
 setStatusBtn.addEventListener('click', function () {
